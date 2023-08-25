@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -13,6 +14,7 @@ class AdminController extends Controller
     }
     public function createProduct()
     {
-      return view('admin.add-product');
+      $categories = Category::all();
+      return view('admin.add-product', compact('categories'));
     }
 }

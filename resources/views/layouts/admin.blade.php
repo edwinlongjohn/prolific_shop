@@ -894,6 +894,12 @@
                                 <i class="ri-layout-3-line"></i> <span data-key="t-layouts">Products</span>
                             </a>
 
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="{{route('category.index')}}"  role="button" aria-expanded="false" aria-controls="sidebarLayouts">
+                                <i class="ri-layout-3-line"></i> <span data-key="t-layouts">Add Category</span>
+                            </a>
+
                         </li> <!-- end Dashboard Menu -->
 
 
