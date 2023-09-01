@@ -21,11 +21,17 @@
         </div>
         <!-- end page title -->
 
-        <form id="createproduct-form" autocomplete="off" class="needs-validation" novalidate>
+        <form id="createproduct-form" action="{{route('admin.submit_product')}}" method="POST" enctype="multipart/form-data"> @csrf
             <div class="row">
                 <div class="col-lg-8">
                     <div class="card">
                         <div class="card-body">
+                            <ul>
+                                @foreach ($errors->all() as $err)
+                                <li class="text-danger">{{$err}}</li>
+                             @endforeach
+                            </ul>
+
                             <div class="mb-3">
                                 <label class="form-label" for="product-title-input">Product Title</label>
 
@@ -49,23 +55,7 @@
                                 <h5 class="fs-14 mb-1">Product Image</h5>
                                 <p class="text-muted">Add Product main Image.</p>
                                 <div class="text-center">
-                                    <div class="position-relative d-inline-block">
-                                        <div class="position-absolute top-100 start-100 translate-middle">
-                                            <label for="product-image-input" class="mb-0" data-bs-toggle="tooltip" data-bs-placement="right" title="Select Image">
-                                                <div class="avatar-xs">
-                                                    <div class="avatar-title bg-light border rounded-circle text-muted cursor-pointer">
-                                                        <i class="ri-image-fill"></i>
-                                                    </div>
-                                                </div>
-                                            </label>
-                                            <input class="form-control d-none"  type="file" name="image" accept="image/png, image/gif, image/jpeg">
-                                        </div>
-                                        <div class="avatar-lg">
-                                            <div class="avatar-title bg-light rounded">
-                                                <img src="#" id="product-img" class="avatar-md h-auto" />
-                                            </div>
-                                        </div>
-                                    </div>
+                                 <input class="form-control "  type="file" name="image" accept="image/png, image/gif, image/jpeg">
                                 </div>
                             </div>
                             <div>
@@ -74,7 +64,7 @@
 
                                 <div class="dropzone">
                                     <div class="fallback">
-                                        <input name="file" type="file" multiple="multiple" name="gallery[]" >
+                                        <input  type="file" multiple="multiple" name="gallery[]" >
                                     </div>
 
                                 </div>
@@ -99,7 +89,7 @@
                         <div class="card-body">
                             <p class="text-muted mb-2"> <a href="{{route('category.index')}}" class="float-end text-decoration-underline">Add
                                     New</a>Select product category</p>
-                            <select class="form-select"  name="category" >
+                            <select class="form-select"  name="category_id" >
                                  @foreach ($categories as $category)
                                     <option value="{{$category->id}}">{{$category->name}}</option>
                                  @endforeach

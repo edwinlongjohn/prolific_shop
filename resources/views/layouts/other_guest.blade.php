@@ -39,11 +39,15 @@
 
     <!-- Vendor CSS -->
     <link rel="stylesheet" type="text/css" href="/assets/vendor/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="/assets/vendor/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/vendor/animate/animate.min.css">
+    
 
     <!-- Plugin CSS -->
     <link rel="stylesheet" type="text/css" href="/assets/vendor/magnific-popup/magnific-popup.min.css">
-
+    <link rel="stylesheet" type="text/css" href="/assets/vendor/photoswipe/photoswipe.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/vendor/photoswipe/default-skin/default-skin.min.css">
+<!-- Swiper's CSS -->
+<link rel="stylesheet" href="/assets/vendor/swiper/swiper-bundle.min.css">
     <!-- Default CSS -->
     <link rel="stylesheet" type="text/css" href="/assets/css/style.min.css">
 </head>
@@ -1553,6 +1557,18 @@
     <!-- End of Mobile Menu -->
 
     <!-- Plugin JS File -->
+
+    <script src="/assets/vendor/sticky/sticky.js"></script>
+    <script src="/assets/vendor/jquery.plugin/jquery.plugin.min.js"></script>
+    <script src="/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+
+    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/assets/vendor/zoom/jquery.zoom.js"></script>
+    <script src="/assets/vendor/photoswipe/photoswipe.js"></script>
+    <script src="/assets/vendor/photoswipe/photoswipe-ui-default.js"></script>
+
+    <!-- Swiper JS -->
+
     <script src="/assets/vendor/jquery/jquery.min.js"></script>
     <script src="/assets/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
     <script src="/assets/js/main.min.js"></script>

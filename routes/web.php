@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
@@ -20,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+Route::get('/view-product-details/{id}', [WelcomeController::class, 'viewProduct'])->name('view_product');
+
 
 Route::get('/dashboard', function () {
     $user = Auth::user();
@@ -41,7 +44,10 @@ Route::prefix('user')->middleware(['auth'])->group(function () {
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin');
     Route::get('/create-product', [AdminController::class, 'createProduct'])->name('admin.create_product');
-    Route::resource('category', CategoryController::class);
+    Route::resource('/category', CategoryController::class);
+    Route::post('/submit-product', [ProductController::class, 'addProduct'])->name('admin.submit_product');
+    Route::get('/view-products', [ProductController::class, 'viewProducts'])->name('admin.show_products');
+    Route::get('/product-details/{id}', [ProductController::class, 'productDetails'])->name('admin.view_product_details');
 });
 
 

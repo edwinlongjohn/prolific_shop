@@ -890,7 +890,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="#"  role="button" aria-expanded="false" aria-controls="sidebarLayouts">
+                            <a class="nav-link menu-link" href="{{route('admin.show_products')}}"  role="button" aria-expanded="false" aria-controls="sidebarLayouts">
                                 <i class="ri-layout-3-line"></i> <span data-key="t-layouts">Products</span>
                             </a>
 
@@ -1574,6 +1574,8 @@
 
     <!-- Dashboard init -->
     <script src="/admin_assets/js/pages/dashboard-ecommerce.init.js"></script>
+     <!-- ecommerce product details init -->
+     <script src="/admin_assets/js/pages/ecommerce-product-details.init.js"></script>
 
     <!-- App js -->
     <script src="/admin_assets/js/app.js"></script>
