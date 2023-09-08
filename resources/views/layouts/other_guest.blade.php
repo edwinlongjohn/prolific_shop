@@ -40,14 +40,14 @@
     <!-- Vendor CSS -->
     <link rel="stylesheet" type="text/css" href="/assets/vendor/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/vendor/animate/animate.min.css">
-    
+
 
     <!-- Plugin CSS -->
     <link rel="stylesheet" type="text/css" href="/assets/vendor/magnific-popup/magnific-popup.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/vendor/photoswipe/photoswipe.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/vendor/photoswipe/default-skin/default-skin.min.css">
-<!-- Swiper's CSS -->
-<link rel="stylesheet" href="/assets/vendor/swiper/swiper-bundle.min.css">
+    <!-- Swiper's CSS -->
+    <link rel="stylesheet" href="/assets/vendor/swiper/swiper-bundle.min.css">
     <!-- Default CSS -->
     <link rel="stylesheet" type="text/css" href="/assets/css/style.min.css">
 </head>
@@ -1556,8 +1556,13 @@
     </div>
     <!-- End of Mobile Menu -->
 
+    @yield('details-footer-content')
+
     <!-- Plugin JS File -->
 
+    <script src="/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="/assets/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="/assets/js/main.min.js"></script>
     <script src="/assets/vendor/sticky/sticky.js"></script>
     <script src="/assets/vendor/jquery.plugin/jquery.plugin.min.js"></script>
     <script src="/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
@@ -1569,9 +1574,7 @@
 
     <!-- Swiper JS -->
 
-    <script src="/assets/vendor/jquery/jquery.min.js"></script>
-    <script src="/assets/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-    <script src="/assets/js/main.min.js"></script>
+
 </body>
 
 <!-- Mirrored from portotheme.com/html/wolmart/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Sep 2022 10:44:19 GMT -->

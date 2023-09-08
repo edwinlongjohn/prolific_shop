@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model
 {
+    protected $guarded = [];
     use HasFactory;
     /**
      * Get the category that owns the Product

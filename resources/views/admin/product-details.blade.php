@@ -93,7 +93,7 @@
                                         </div>
                                         <div class="flex-shrink-0">
                                             <div>
-                                                <a href="apps-ecommerce-add-product.html" class="btn btn-light"
+                                                <a href="{{route('admin.edit_product', [$product->name, $product->id])}}" class="btn btn-light"
                                                     data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i
                                                         class="ri-pencil-fill align-bottom"></i></a>
                                             </div>

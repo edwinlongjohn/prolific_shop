@@ -48,6 +48,9 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('/submit-product', [ProductController::class, 'addProduct'])->name('admin.submit_product');
     Route::get('/view-products', [ProductController::class, 'viewProducts'])->name('admin.show_products');
     Route::get('/product-details/{id}', [ProductController::class, 'productDetails'])->name('admin.view_product_details');
+    Route::get('/edit-product/{name}/{id}', [ProductController::class, 'edit'])->name('admin.edit_product');
+    Route::post('/submit-editted-product/{product}', [ProductController::class, 'submitEdittedProduct'])->name('admin.submit_editted_product');
+
 });
 
 
