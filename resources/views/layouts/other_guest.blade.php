@@ -59,7 +59,7 @@
             <div class="header-top">
                 <div class="container">
                     <div class="header-left">
-                        <p class="welcome-msg">Welcome to Wolmart Store message or remove it!</p>
+                        <p class="welcome-msg">{{session('success')}}</p>
                     </div>
                     <div class="header-right">
                         <div class="dropdown">
@@ -150,8 +150,9 @@
                         <div class="dropdown cart-dropdown cart-offcanvas mr-0 mr-lg-2">
                             <div class="cart-overlay"></div>
                             <a href="#" class="cart-toggle label-down link">
+
                                 <i class="w-icon-cart">
-                                    <span class="cart-count">2</span>
+                                    <span class="cart-count">{{count((array) session('cart'))}}</span>
                                 </i>
                                 <span class="cart-label">Cart</span>
                             </a>
@@ -162,19 +163,26 @@
                                 </div>
 
                                 <div class="products">
+                                    @php
+                                        $total = 0
+                                    @endphp
+                                    @foreach ((array) session('cart') as $key => $product)
+                                    @php
+                                        $total += $product['quantity'] * $product['price'];
+                                    @endphp
                                     <div class="product product-cart">
                                         <div class="product-detail">
-                                            <a href="product-default.html" class="product-name">Beige knitted
-                                                elas<br>tic
-                                                runner shoes</a>
+                                            <h3 class="product-name">
+                                                <a href="product-default.html">{{$product['name']}}</a>
+                                            </h3>
                                             <div class="price-box">
-                                                <span class="product-quantity">1</span>
-                                                <span class="product-price">$25.68</span>
+                                                <span class="product-quantity">{{$product['quantity']}}</span>
+                                                <span class="product-price">${{number_format($product['price'],2)}}</span>
                                             </div>
                                         </div>
                                         <figure class="product-media">
-                                            <a href="product-default.html">
-                                                <img src="/assets/images/cart/product-1.jpg" alt="product" height="84"
+                                            <a href="#">
+                                                <img src="/storage/product_display_images/{{$product['image']}}" alt="product" height="84"
                                                     width="94" />
                                             </a>
                                         </figure>
@@ -182,36 +190,19 @@
                                             <i class="fas fa-times"></i>
                                         </button>
                                     </div>
+                                    @endforeach
 
-                                    <div class="product product-cart">
-                                        <div class="product-detail">
-                                            <a href="product-default.html" class="product-name">Blue utility
-                                                pina<br>fore
-                                                denim dress</a>
-                                            <div class="price-box">
-                                                <span class="product-quantity">1</span>
-                                                <span class="product-price">$32.99</span>
-                                            </div>
-                                        </div>
-                                        <figure class="product-media">
-                                            <a href="product-default.html">
-                                                <img src="/assets/images/cart/product-2.jpg" alt="product" width="84"
-                                                    height="94" />
-                                            </a>
-                                        </figure>
-                                        <button class="btn btn-link btn-close" aria-label="button">
-                                            <i class="fas fa-times"></i>
-                                        </button>
-                                    </div>
+
+
                                 </div>
 
                                 <div class="cart-total">
                                     <label>Subtotal:</label>
-                                    <span class="price">$58.67</span>
+                                    <span class="price">${{number_format($total,2)}}</span>
                                 </div>
 
                                 <div class="cart-action">
-                                    <a href="cart.html" class="btn btn-dark btn-outline btn-rounded">View Cart</a>
+                                    <a href="{{route('user.view_cart')}}" class="btn btn-dark btn-outline btn-rounded">View Cart</a>
                                     <a href="checkout.html" class="btn btn-primary  btn-rounded">Checkout</a>
                                 </div>
                             </div>
@@ -300,7 +291,7 @@
                                             </ul>
                                         </li>
                                         <li>
-                                            <a href="shop-fullwidth-banner.html">
+                                            <a href="{{route('welcome')}}">
                                                 <i class="w-icon-home"></i>Home & Garden
                                             </a>
                                             <ul class="megamenu">
@@ -881,7 +872,7 @@
                                 <h4 class="widget-title">My Account</h4>
                                 <ul class="widget-body">
                                     <li><a href="#">Track My Order</a></li>
-                                    <li><a href="cart.html">View Cart</a></li>
+                                    <li><a href="{{route('user.view_cart')}}">View Cart</a></li>
                                     <li><a href="login.html">Sign In</a></li>
                                     <li><a href="#">Help</a></li>
                                     <li><a href="wishlist.html">My Wishlist</a></li>
@@ -1017,21 +1008,27 @@
                 <p>Cart</p>
             </a>
             <div class="dropdown-box">
+                @php
+                    $total = 0;
+                @endphp
                 <div class="products">
+                    @foreach ((array) session('cart') as $key => $product)
+                    @php
+                    $total += $product['quantity'] * $product['price'];
+                @endphp
                     <div class="product product-cart">
                         <div class="product-detail">
                             <h3 class="product-name">
-                                <a href="product-default.html">Beige knitted elas<br>tic
-                                    runner shoes</a>
+                                <a href="product-default.html">{{$product['name']}}</a>
                             </h3>
                             <div class="price-box">
-                                <span class="product-quantity">1</span>
-                                <span class="product-price">$25.68</span>
+                                <span class="product-quantity">{{$product['quantity']}}</span>
+                                <span class="product-price">${{number_format($product['price'],2)}}</span>
                             </div>
                         </div>
                         <figure class="product-media">
                             <a href="#">
-                                <img src="/assets/images/cart/product-1.jpg" alt="product" height="84"
+                                <img src="/storage/product_display_images/{{$product['image']}}" alt="product" height="84"
                                     width="94" />
                             </a>
                         </figure>
@@ -1039,37 +1036,19 @@
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
+                    @endforeach
 
-                    <div class="product product-cart">
-                        <div class="product-detail">
-                            <h3 class="product-name">
-                                <a href="https://www.portotheme.com/html/wolmart/product.html">Blue utility pina<br>fore
-                                    denim dress</a>
-                            </h3>
-                            <div class="price-box">
-                                <span class="product-quantity">1</span>
-                                <span class="product-price">$32.99</span>
-                            </div>
-                        </div>
-                        <figure class="product-media">
-                            <a href="#">
-                                <img src="/assets/images/cart/product-2.jpg" alt="product" width="84"
-                                    height="94" />
-                            </a>
-                        </figure>
-                        <button class="btn btn-link btn-close" aria-label="button">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
+
+
                 </div>
 
                 <div class="cart-total">
                     <label>Subtotal:</label>
-                    <span class="price">$58.67</span>
+                    <span class="price">${{number_format($total,2)}}</span>
                 </div>
 
                 <div class="cart-action">
-                    <a href="cart.html" class="btn btn-dark btn-outline btn-rounded">View Cart</a>
+                    <a href="{{route('user.view_cart')}}" class="btn btn-dark btn-outline btn-rounded">View Cart</a>
                     <a href="checkout.html" class="btn btn-primary  btn-rounded">Checkout</a>
                 </div>
             </div>
@@ -1126,7 +1105,7 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="main-menu">
                     <ul class="mobile-menu">
-                        <li><a href="demo1.html">Home</a></li>
+                        <li><a href="{{route('welcome')}}">Home</a></li>
                         <li>
                             <a href="shop-banner-sidebar.html">Shop</a>
                             <ul>
@@ -1573,7 +1552,7 @@
     <script src="/assets/vendor/photoswipe/photoswipe-ui-default.js"></script>
 
     <!-- Swiper JS -->
-
+    @yield('scripts')
 
 </body>
 

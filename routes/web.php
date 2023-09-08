@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -39,6 +40,10 @@ Route::get('/dashboard', function () {
 
 Route::prefix('user')->middleware(['auth'])->group(function () {
  Route::get('/', [UserController::class, 'index'])->name('user');
+ Route::get('/view-cart', [CartController::class, 'index'])->name('user.view_cart');
+ Route::get('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('user.add_to_card');
+ Route::delete('/remove-from-cart', [CartController::class, 'removeFromCart'])->name('user.remove_product_from_cart');
+ Route::patch('/update-cart', [CartController::class, 'updateCart'])->name('user.update_cart');
 });
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {

@@ -113,18 +113,21 @@
 
                             <div class="fix-bottom product-sticky-content sticky-content">
                                 <div class="product-form container">
-                                    <div class="product-qty-form">
+                                    {{-- <div class="product-qty-form">
                                         <div class="input-group">
                                             <input class="quantity form-control" type="number" min="1"
                                                 max="10000000">
                                             <button class="quantity-plus w-icon-plus"></button>
                                             <button class="quantity-minus w-icon-minus"></button>
                                         </div>
-                                    </div>
-                                    <button class="btn btn-primary btn-cart">
-                                        <i class="w-icon-cart"></i>
-                                        <span>Add to Cart</span>
-                                    </button>
+                                    </div> --}}
+                                    <a href="{{route('user.add_to_card', $product->id)}}">
+                                        <button class="btn btn-primary " type = 'button'>
+                                            <i class="w-icon-cart"></i>
+                                            <span>Add to Cart</span>
+                                        </button>
+                                    </a>
+
                                 </div>
                             </div>
 
