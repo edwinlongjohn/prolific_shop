@@ -89,7 +89,9 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Category $category)
-    {
-        //
+    {   
+        //dd($category);
+        $category->delete();
+        return back()->with(['success' => 'category deleted successfully']);
     }
 }

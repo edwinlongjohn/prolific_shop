@@ -76,20 +76,25 @@ class ProductController extends Controller
     public function submitEdittedProduct(Request $request, Product $product)
     {
 
-
-        $product->update($request->all());
         if ($request->file('image')) {
+            //updating data input except image.
+            $product->update($request->except('image'));
+            
+            //removing image from storage folder
+            $image_path = public_path().'/storage/product_display_images/'.$product->image;
+            unlink($image_path);
+
+            //addition of new image
             $image = $request->image;
             $ext = $image->extension();
             $imageName = time() . '.' . $ext;
             $image->storeAs('/public/product_display_images', $imageName);
-            //removing image from storage folder
 
-            $image_path = public_path().'/storage/product_display_images/'.$product->image;
-            unlink($image_path);
             //storing image to database
             $product->image = $imageName;
             $product->save();
+        }else{
+            $product->update($request->all());
         }
 
         return back()->with(['success' => 'product updated successfully']);

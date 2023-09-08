@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -39,6 +40,7 @@ Route::get('/dashboard', function () {
 
 Route::prefix('user')->middleware(['auth'])->group(function () {
  Route::get('/', [UserController::class, 'index'])->name('user');
+ Route::get('/add-to-cart/{id}',[CartController::class, 'addToCart'])->name('user.add_to_cart');
 });
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
@@ -50,6 +52,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/product-details/{id}', [ProductController::class, 'productDetails'])->name('admin.view_product_details');
     Route::get('/edit-product/{name}/{id}', [ProductController::class, 'edit'])->name('admin.edit_product');
     Route::post('/submit-editted-product/{product}', [ProductController::class, 'submitEdittedProduct'])->name('admin.submit_editted_product');
+
 
 });
 

@@ -22,23 +22,23 @@
             </div>
             <!-- end page title -->
 
-            <form id="createproduct-form" action="{{route('category.store')}}" method="post">@csrf
+            <form action="{{ route('category.store') }}" method="post">@csrf
 
-            <div class="row">
+                <div class="row">
 
                     <div class="col-lg-8">
                         <div class="card">
                             <div class="card-body">
                                 @foreach ($errors->all() as $error)
                                     <ul>
-                                        <li class="text-danger">{{$error}}</li>
+                                        <li class="text-danger">{{ $error }}</li>
                                     </ul>
                                 @endforeach
                                 <div class="mb-3">
                                     <label class="form-label" for="product-title-input">Category Title</label>
 
-                                    <input type="text"  class="form-control" required name="name"
-                                        placeholder="Enter category title" >
+                                    <input type="text" class="form-control" required name="name"
+                                        placeholder="Enter category title">
                                     <div class="invalid-feedback">Please Enter a category title.</div>
                                 </div>
 
@@ -54,56 +54,64 @@
                         </div>
                     </div>
                     <!-- end col -->
-                </form>
+            </form>
 
-                <div class="col-lg-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="card-title mb-0">Categories</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                               @foreach ($categories as $category)
-                               <div class="col-6">
-                                <div class="mb-3">
-                                    <div class="card card-body shadow-lg">
-                                        <p class="card-text">
-                                            {{$category->name}}
-                                        </p>
-                                        <div class="dflex">
-                                            <a href="#">
-                                                <button class="btn btn-warning btn-sm" type="button">Edit</button>
-                                            </a>
-                                            <a href="#">
-                                                <button class="btn btn-danger btn-sm" type="button">Delete</button>
-                                            </a>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Categories</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            @foreach ($categories as $category)
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <div class="card card-body shadow-lg">
+                                            <p class="card-text">
+                                                {{ $category->name }}
+                                            </p>
+                                            <div class="d-flex">
+                                                <a href="#">
+                                                    <button class="btn btn-warning btn-sm me-2" type="button">Edit</button>
+                                                </a>
+                                                <form method="POST" action="{{ route('category.destroy', $category) }}">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <a href="{{ route('category.destroy', $category) }}"
+                                                        onclick="event.preventDefault(); this.closest('form').submit();">
+                                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                                    </a>
+                                                </form>
+
+
+
+                                            </div>
+
                                         </div>
 
                                     </div>
-
                                 </div>
-                            </div>
-                               @endforeach
-
-                            </div>
-
-
+                            @endforeach
 
                         </div>
-                        <!-- end card body -->
+
+
+
                     </div>
-                    <!-- end card -->
-
-
-
+                    <!-- end card body -->
                 </div>
-                <!-- end col -->
+                <!-- end card -->
+
+
+
             </div>
-            <!-- end row -->
-
-
-
+            <!-- end col -->
         </div>
-        <!-- container-fluid -->
+        <!-- end row -->
+
+
+
+    </div>
+    <!-- container-fluid -->
     </div>
 @endsection
