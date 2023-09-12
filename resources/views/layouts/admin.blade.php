@@ -900,7 +900,15 @@
                                 <i class="ri-layout-3-line"></i> <span data-key="t-layouts">Add Category</span>
                             </a>
 
-                        </li> <!-- end Dashboard Menu -->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="{{route('logout')}}" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
+                                <i class="ri-layout-3-line"></i> <span data-key="t-layouts">Logout</span>
+                            </a>
+                            <form action="{{route('logout')}}" method="post" id="logout-form">@csrf</form>
+                        </li>
+                        <!-- end Dashboard Menu -->
 
 
 

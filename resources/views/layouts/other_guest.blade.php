@@ -151,7 +151,7 @@
                             <div class="cart-overlay"></div>
                             <a href="#" class="cart-toggle label-down link">
                                 <i class="w-icon-cart">
-                                    <span class="cart-count">2</span>
+                                    <span class="cart-count">{{ count((array) session('cart')) }}</span>
                                 </i>
                                 <span class="cart-label">Cart</span>
                             </a>
@@ -162,19 +162,18 @@
                                 </div>
 
                                 <div class="products">
+                                    @foreach (session('cart') as $product)
                                     <div class="product product-cart">
                                         <div class="product-detail">
-                                            <a href="product-default.html" class="product-name">Beige knitted
-                                                elas<br>tic
-                                                runner shoes</a>
+                                            <a href="product-default.html" class="product-name">{{$product['name']}}</a>
                                             <div class="price-box">
-                                                <span class="product-quantity">1</span>
-                                                <span class="product-price">$25.68</span>
+                                                <span class="product-quantity">{{$product['quantity']}}</span>
+                                                <span class="product-price">${{number_format($product['price'],2)}}</span>
                                             </div>
                                         </div>
                                         <figure class="product-media">
                                             <a href="product-default.html">
-                                                <img src="/assets/images/cart/product-1.jpg" alt="product" height="84"
+                                                <img src="/storage/product_display_images/{{$product['image']}}" alt="product" height="84"
                                                     width="94" />
                                             </a>
                                         </figure>
@@ -182,27 +181,10 @@
                                             <i class="fas fa-times"></i>
                                         </button>
                                     </div>
+                                    @endforeach
+                                    
 
-                                    <div class="product product-cart">
-                                        <div class="product-detail">
-                                            <a href="product-default.html" class="product-name">Blue utility
-                                                pina<br>fore
-                                                denim dress</a>
-                                            <div class="price-box">
-                                                <span class="product-quantity">1</span>
-                                                <span class="product-price">$32.99</span>
-                                            </div>
-                                        </div>
-                                        <figure class="product-media">
-                                            <a href="product-default.html">
-                                                <img src="/assets/images/cart/product-2.jpg" alt="product" width="84"
-                                                    height="94" />
-                                            </a>
-                                        </figure>
-                                        <button class="btn btn-link btn-close" aria-label="button">
-                                            <i class="fas fa-times"></i>
-                                        </button>
-                                    </div>
+                                   
                                 </div>
 
                                 <div class="cart-total">
@@ -626,7 +608,7 @@
                             <nav class="main-nav">
                                 <ul class="menu active-underline">
                                     <li class="active">
-                                        <a href="demo1.html">Home</a>
+                                        <a href="{{route('welcome')}}">Home</a>
                                     </li>
                                     <li>
                                         <a href="shop-banner-sidebar.html">Shop</a>
@@ -999,7 +981,7 @@
 
     <!-- Start of Sticky Footer -->
     <div class="sticky-footer sticky-content fix-bottom">
-        <a href="demo1.html" class="sticky-link active">
+        <a href="{{route('welcome')}}" class="sticky-link active">
             <i class="w-icon-home"></i>
             <p>Home</p>
         </a>
@@ -1126,7 +1108,7 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="main-menu">
                     <ul class="mobile-menu">
-                        <li><a href="demo1.html">Home</a></li>
+                        <li><a href="{{route('welcome')}}">Home</a></li>
                         <li>
                             <a href="shop-banner-sidebar.html">Shop</a>
                             <ul>

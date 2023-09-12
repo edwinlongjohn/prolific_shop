@@ -74,13 +74,15 @@
                                                 <a href="#">
                                                     <button class="btn btn-warning btn-sm me-2" type="button">Edit</button>
                                                 </a>
-                                                <form method="POST" action="{{ route('category.destroy', $category) }}">
+                                                    <a href="{{ route('category.destroy', $category) }}" class="btn btn-danger btn-sm"
+                                                        onclick="event.preventDefault(); document.getElementById('delete-form-{{$category->id}}');">
+                                                        Delete
+                                                    </a>
+                                
+
+                                                <form id="delete-form-{{$category->id}}" action="{{route('category.destroy', $category)}}" method = "POST ">
                                                     @csrf
                                                     @method('delete')
-                                                    <a href="{{ route('category.destroy', $category) }}"
-                                                        onclick="event.preventDefault(); this.closest('form').submit();">
-                                                        <button class="btn btn-danger btn-sm">Delete</button>
-                                                    </a>
                                                 </form>
 
 
