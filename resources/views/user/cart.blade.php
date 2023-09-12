@@ -21,6 +21,7 @@
                     <table class="shop-table cart-table">
                         <thead>
                             <tr>
+                                <th>S/N</th>
                                 <th class="product-name"><span>Product</span></th>
                                 <th></th>
                                 <th class="product-price"><span>Price</span></th>
@@ -29,70 +30,48 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="product-thumbnail">
-                                    <div class="p-relative">
-                                        <a href="product-default.html">
-                                            <figure>
-                                                <img src="assets/images/shop/12.jpg" alt="product"
-                                                    width="300" height="338">
-                                            </figure>
+                            @if(!empty(session('cart')))
+                                @foreach (session('cart') as $key => $product)
+                                <tr>
+                                    <td>{{$loop->iteration}}</td>
+                                    <td class="product-thumbnail">
+                                        <div class="p-relative">
+                                            <a href="product-default.html">
+                                                <figure>
+                                                    <img src="/storage/product_display_images/{{$product['image']}}" alt="product"
+                                                        width="300" height="338">
+                                                </figure>
+                                            </a>
+                                            <button type="submit" class="btn btn-close"><i
+                                                    class="fas fa-times"></i></button>
+                                        </div>
+                                    </td>
+                                    <td class="product-name">
+                                        <a href="{{route('view_product', $product['identity'])}}">
+                                            {{$product['name']}}
                                         </a>
-                                        <button type="submit" class="btn btn-close"><i
-                                                class="fas fa-times"></i></button>
-                                    </div>
-                                </td>
-                                <td class="product-name">
-                                    <a href="product-default.html">
-                                        Classic Simple Backpack
-                                    </a>
-                                </td>
-                                <td class="product-price"><span class="amount">$40.00</span></td>
-                                <td class="product-quantity">
-                                    <div class="input-group">
-                                        <input class="quantity form-control" type="number" min="1" max="100000">
-                                        <button class="quantity-plus w-icon-plus"></button>
-                                        <button class="quantity-minus w-icon-minus"></button>
-                                    </div>
-                                </td>
-                                <td class="product-subtotal">
-                                    <span class="amount">$40.00</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="product-thumbnail">
-                                    <div class="p-relative">
-                                        <a href="product-default.html">
-                                            <figure>
-                                                <img src="assets/images/shop/13.jpg" alt="product"
-                                                    width="300" height="338">
-                                            </figure>
-                                        </a>
-                                        <button class="btn btn-close"><i class="fas fa-times"></i></button>
-                                    </div>
-                                </td>
-                                <td class="product-name">
-                                    <a href="product-default.html">
-                                        Smart Watch
-                                    </a>
-                                </td>
-                                <td class="product-price"><span class="amount">$60.00</span></td>
-                                <td class="product-quantity">
-                                    <div class="input-group">
-                                        <input class="quantity form-control" type="number" min="1" max="100000">
-                                        <button class="quantity-plus w-icon-plus"></button>
-                                        <button class="quantity-minus w-icon-minus"></button>
-                                    </div>
-                                </td>
-                                <td class="product-subtotal">
-                                    <span class="amount">$60.00</span>
-                                </td>
-                            </tr>
+                                    </td>
+                                    <td class="product-price"><span class="amount">${{number_format($product['price'],2)}}</span></td>
+                                    <td class="product-quantity">
+                                        <div class="input-group">
+                                            <input class="quantity form-control" type="number" min="1" max="100000">
+                                            <button class="quantity-plus w-icon-plus"></button>
+                                            <button class="quantity-minus w-icon-minus"></button>
+                                        </div>
+                                    </td>
+                                    <td class="product-subtotal">
+                                        <span class="amount">${{number_format($product['price']* $product['quantity'],2)}}</span>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            @endif
+                           
+                           
                         </tbody>
                     </table>
 
                     <div class="cart-action mb-6">
-                        <a href="#" class="btn btn-dark btn-rounded btn-icon-left btn-shopping mr-auto"><i class="w-icon-long-arrow-left"></i>Continue Shopping</a>
+                        <a href="{{route('welcome')}}" class="btn btn-dark btn-rounded btn-icon-left btn-shopping mr-auto"><i class="w-icon-long-arrow-left"></i>Continue Shopping</a>
                         <button type="submit" class="btn btn-rounded btn-default btn-clear" name="clear_cart" value="Clear Cart">Clear Cart</button> 
                         <button type="submit" class="btn btn-rounded btn-update disabled" name="update_cart" value="Update Cart">Update Cart</button>
                     </div>

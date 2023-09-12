@@ -13,18 +13,19 @@ class CartController extends Controller
         //dd('i got here');
         $product = Product::find($id);
         $cart = session()->get('cart', []);
-        unset($cart);
-        // if (isset($cart[$id])) {
-        //     $cart[$id]['quantity']++;
-        // } else {
-        //     $cart[$id] = [
-        //         'identity' => $product->id,
-        //         'name' => $product->name,
-        //         'price' => $product->price,
-        //         'image' => $product->image,
-        //         'quantity' => 1,
-        //     ];
-        // }
+       
+        
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+        } else {
+            $cart[$id] = [
+                'identity' => $product->id,
+                'name' => $product->name,
+                'price' => $product->price,
+                'image' => $product->image,
+                'quantity' => 1,
+            ];
+        }
 
         session()->put('cart', $cart);
 

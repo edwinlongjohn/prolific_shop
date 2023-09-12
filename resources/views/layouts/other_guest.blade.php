@@ -174,14 +174,14 @@
                                     
                                     <div class="product product-cart">
                                         <div class="product-detail">
-                                            <a href="{{route('view_product',$key)}}" class="product-name">{{$product['name']}}</a>
+                                            <a href="{{route('view_product',$product['identity'])}}" class="product-name">{{$product['name']}}</a>
                                             <div class="price-box">
                                                 <span class="product-quantity">{{$product['quantity']}}</span>
                                                 <span class="product-price">${{number_format($product['price'],2)}}</span>
                                             </div>
                                         </div>
                                         <figure class="product-media">
-                                            <a href="{{route('view_product',$key)}}">
+                                            <a href="{{route('view_product',$product['identity'])}}">
                                                 <img src="/storage/product_display_images/{{$product['image']}}" alt="product" height="84"
                                                     width="94" />
                                             </a>
