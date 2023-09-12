@@ -35,4 +35,17 @@ class CartController extends Controller
     {
         return view('user.cart');
     }
+
+    public function update(Request $request)
+    {
+       $id = $request->id;
+       $quantity = request->quantity;
+       $cart = session()->get('cart', []);
+
+       if(isset($cart[$id])){
+            $cart[$id]['quantity'] = $quantity;
+            session()->put('cart', $cart);
+       }
+       session()->flash('cart updated successfully');
+    }
 }

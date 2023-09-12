@@ -1566,7 +1566,7 @@
     <script src="/assets/vendor/photoswipe/photoswipe-ui-default.js"></script>
 
     <!-- Swiper JS -->
-
+    @yield('scripts')
 
 </body>
 

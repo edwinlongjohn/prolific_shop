@@ -31,8 +31,11 @@
                         </thead>
                         <tbody>
                             @if(!empty(session('cart')))
+                            @php
+                                dd(session('cart'));
+                            @endphp
                                 @foreach (session('cart') as $key => $product)
-                                <tr>
+                                <tr data-id="{{$key}}">
                                     <td>{{$loop->iteration}}</td>
                                     <td class="product-thumbnail">
                                         <div class="p-relative">
@@ -54,7 +57,7 @@
                                     <td class="product-price"><span class="amount">${{number_format($product['price'],2)}}</span></td>
                                     <td class="product-quantity">
                                         <div class="input-grou">
-                                            <input class="form-control" value="{{$product['quantity']}}" type="number" min="1" max="100000">
+                                            <input class="form-control cart_update quant" value="{{$product['quantity']}}" type="number" min="1" max="100000">
                                            
                                         </div>
                                     </td>
@@ -98,4 +101,50 @@
     <!-- End of PageContent -->
 </main>
 <!-- End of Main -->
+@endsection
+
+@section('scripts')
+<script type="text/javascript">
+    $('.cart_update').change(function (e) {
+        e.preventDefault();
+        let ele = $(this);
+        $.ajax({
+            url: '{{route('user.update_cart')}}',
+            method: "PATCH",
+            data: {
+                _token: '{{csrf_token()}}',
+                id: ele.parents("tr").attr("data-id"),
+                quantity: ele.parents('tr').find('.quant').val()
+            },
+            success: function (response) {
+                //console(response);
+                window.location.reload();
+            }
+        }).fail(function (xhr, status, error) {
+            console.log(xhr, status, error);
+        })
+
+    })
+
+    $('.cart_remove').click(function (e) {
+        e.preventDefault();
+        let ele = $(this);
+        if (confirm('are you sure you want to delete this product from your Cart')) {
+            $.ajax({
+                url: '{{route('user.remove_product_from_cart')}}',
+                method: "DELETE",
+                data: {
+                    _token: '{{csrf_token()}}',
+                    id: ele.parents("tr").attr("data-id"),
+                },
+                success: function (response) {
+                    window.location.reload();
+                }
+            }).fail(function (xhr, status, error) {
+                console.log(xhr, status, error);
+            })
+        }
+    })
+
+</script>
 @endsection
