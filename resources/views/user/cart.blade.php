@@ -53,10 +53,9 @@
                                     </td>
                                     <td class="product-price"><span class="amount">${{number_format($product['price'],2)}}</span></td>
                                     <td class="product-quantity">
-                                        <div class="input-group">
-                                            <input class="quantity form-control" type="number" min="1" max="100000">
-                                            <button class="quantity-plus w-icon-plus"></button>
-                                            <button class="quantity-minus w-icon-minus"></button>
+                                        <div class="input-grou">
+                                            <input class="form-control" value="{{$product['quantity']}}" type="number" min="1" max="100000">
+                                           
                                         </div>
                                     </td>
                                     <td class="product-subtotal">
@@ -76,96 +75,12 @@
                         <button type="submit" class="btn btn-rounded btn-update disabled" name="update_cart" value="Update Cart">Update Cart</button>
                     </div>
 
-                    <form class="coupon">
-                        <h5 class="title coupon-title font-weight-bold text-uppercase">Coupon Discount</h5>
-                        <input type="text" class="form-control mb-4" placeholder="Enter coupon code here..." required />
-                        <button class="btn btn-dark btn-outline btn-rounded">Apply Coupon</button>
-                    </form>
+                    
                 </div>
                 <div class="col-lg-4 sticky-sidebar-wrapper">
                     <div class="sticky-sidebar">
                         <div class="cart-summary mb-4">
                             <h3 class="cart-title text-uppercase">Cart Totals</h3>
-                            <div class="cart-subtotal d-flex align-items-center justify-content-between">
-                                <label class="ls-25">Subtotal</label>
-                                <span>$100.00</span>
-                            </div>
-
-                            <hr class="divider">
-
-                            <ul class="shipping-methods mb-2">
-                                <li>
-                                    <label
-                                        class="shipping-title text-dark font-weight-bold">Shipping</label>
-                                </li>
-                                <li>
-                                    <div class="custom-radio">
-                                        <input type="radio" id="free-shipping" class="custom-control-input"
-                                            name="shipping">
-                                        <label for="free-shipping"
-                                            class="custom-control-label color-dark">Free
-                                            Shipping</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="custom-radio">
-                                        <input type="radio" id="local-pickup" class="custom-control-input"
-                                            name="shipping">
-                                        <label for="local-pickup"
-                                            class="custom-control-label color-dark">Local
-                                            Pickup</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="custom-radio">
-                                        <input type="radio" id="flat-rate" class="custom-control-input"
-                                            name="shipping">
-                                        <label for="flat-rate" class="custom-control-label color-dark">Flat
-                                            rate:
-                                            $5.00</label>
-                                    </div>
-                                </li>
-                            </ul>
-
-                            <div class="shipping-calculator">
-                                <p class="shipping-destination lh-1">Shipping to <strong>CA</strong>.</p>
-
-                                <form class="shipping-calculator-form">
-                                    <div class="form-group">
-                                        <div class="select-box">
-                                            <select name="country" class="form-control form-control-md">
-                                                <option value="default" selected="selected">United States
-                                                    (US)
-                                                </option>
-                                                <option value="us">United States</option>
-                                                <option value="uk">United Kingdom</option>
-                                                <option value="fr">France</option>
-                                                <option value="aus">Australia</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="select-box">
-                                            <select name="state" class="form-control form-control-md">
-                                                <option value="default" selected="selected">California
-                                                </option>
-                                                <option value="ohaio">Ohaio</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="form-control form-control-md" type="text"
-                                            name="town-city" placeholder="Town / City">
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="form-control form-control-md" type="text"
-                                            name="zipcode" placeholder="ZIP">
-                                    </div>
-                                    <button type="submit" class="btn btn-dark btn-outline btn-rounded">Update
-                                        Totals</button>
-                                </form>
-                            </div>
-
                             <hr class="divider mb-6">
                             <div class="order-total d-flex justify-content-between align-items-center">
                                 <label>Total</label>
