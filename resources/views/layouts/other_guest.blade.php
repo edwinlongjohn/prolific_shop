@@ -162,17 +162,26 @@
                                 </div>
 
                                 <div class="products">
-                                    @foreach (session('cart') as $product)
+                                    @php
+                                        $total = 0;
+                                    @endphp
+                                    @if (!empty(session('cart')))
+                                    @foreach (session('cart') as $key => $product)
+                                    @php
+                                        $total += $product['quantity'] * $product['price'];
+                                        
+                                    @endphp
+                                    
                                     <div class="product product-cart">
                                         <div class="product-detail">
-                                            <a href="product-default.html" class="product-name">{{$product['name']}}</a>
+                                            <a href="{{route('view_product',$key)}}" class="product-name">{{$product['name']}}</a>
                                             <div class="price-box">
                                                 <span class="product-quantity">{{$product['quantity']}}</span>
                                                 <span class="product-price">${{number_format($product['price'],2)}}</span>
                                             </div>
                                         </div>
                                         <figure class="product-media">
-                                            <a href="product-default.html">
+                                            <a href="{{route('view_product',$key)}}">
                                                 <img src="/storage/product_display_images/{{$product['image']}}" alt="product" height="84"
                                                     width="94" />
                                             </a>
@@ -182,6 +191,8 @@
                                         </button>
                                     </div>
                                     @endforeach
+                                    @endif
+                                    
                                     
 
                                    
@@ -189,11 +200,11 @@
 
                                 <div class="cart-total">
                                     <label>Subtotal:</label>
-                                    <span class="price">$58.67</span>
+                                    <span class="price">${{number_format($total,2)}}</span>
                                 </div>
 
                                 <div class="cart-action">
-                                    <a href="cart.html" class="btn btn-dark btn-outline btn-rounded">View Cart</a>
+                                    <a href="{{route('user.view_cart')}}" class="btn btn-dark btn-outline btn-rounded">View Cart</a>
                                     <a href="checkout.html" class="btn btn-primary  btn-rounded">Checkout</a>
                                 </div>
                             </div>

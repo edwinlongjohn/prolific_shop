@@ -41,6 +41,7 @@ Route::get('/dashboard', function () {
 Route::prefix('user')->middleware(['auth'])->group(function () {
  Route::get('/', [UserController::class, 'index'])->name('user');
  Route::get('/add-to-cart/{id}',[CartController::class, 'addToCart'])->name('user.add_to_cart');
+ Route::get('/view-cart', [CartController::class, 'viewCartItems'])->name('user.view_cart');
 });
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
