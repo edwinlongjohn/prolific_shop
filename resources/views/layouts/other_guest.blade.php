@@ -3,6 +3,7 @@
 
 
 <!-- Mirrored from portotheme.com/html/wolmart/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Sep 2022 10:44:19 GMT -->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
@@ -19,14 +20,18 @@
     <!-- WebFont.js -->
     <script>
         WebFontConfig = {
-            google: { families: ['Poppins:400,500,600,700'] }
+            google: {
+                families: ['Poppins:400,500,600,700']
+            }
         };
-        ( function ( d ) {
-            var wf = d.createElement( 'script' ), s = d.scripts[0];
+        (function (d) {
+            var wf = d.createElement('script'),
+                s = d.scripts[0];
             wf.src = '/assets/js/webfont.js';
             wf.async = true;
-            s.parentNode.insertBefore( wf, s );
-        } )( document );
+            s.parentNode.insertBefore(wf, s);
+        })(document);
+
     </script>
 
     <link rel="preload" href="/assets/vendor/fontawesome-free/webfonts/fa-regular-400.woff2" as="font" type="font/woff2"
@@ -34,7 +39,7 @@
     <link rel="preload" href="/assets/vendor/fontawesome-free/webfonts/fa-solid-900.woff2" as="font" type="font/woff2"
         crossorigin="anonymous">
     <link rel="preload" href="/assets/vendor/fontawesome-free/webfonts/fa-brands-400.woff2" as="font" type="font/woff2"
-            crossorigin="anonymous">
+        crossorigin="anonymous">
     <link rel="preload" href="/assets/fonts/wolmart87d5.woff?png09e" as="font" type="font/woff" crossorigin="anonymous">
 
     <!-- Vendor CSS -->
@@ -46,6 +51,7 @@
     <link rel="stylesheet" type="text/css" href="/assets/vendor/magnific-popup/magnific-popup.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/vendor/photoswipe/photoswipe.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/vendor/photoswipe/default-skin/default-skin.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.28/dist/sweetalert2.min.css" rel="stylesheet">
     <!-- Swiper's CSS -->
     <link rel="stylesheet" href="/assets/vendor/swiper/swiper-bundle.min.css">
     <!-- Default CSS -->
@@ -92,8 +98,7 @@
                         <a href="blog.html" class="d-lg-show">Blog</a>
                         <a href="contact-us.html" class="d-lg-show">Contact Us</a>
                         <a href="my-account.html" class="d-lg-show">My Account</a>
-                        <a href="{{route('login')}}" class="d-lg-show "><i
-                                class="w-icon-account"></i>Sign In</a>
+                        <a href="{{route('login')}}" class="d-lg-show "><i class="w-icon-account"></i>Sign In</a>
                         <span class="delimiter d-lg-show">/</span>
                         <a href="{{route('login')}}" class="ml-0 d-lg-show">Register</a>
                     </div>
@@ -109,7 +114,8 @@
                         <a href="demo1.html" class="logo ml-lg-0">
                             <img src="/assets/images/logo.png" alt="logo" width="144" height="45" />
                         </a>
-                        <form method="get" action="#" class="header-search hs-expanded hs-round d-none d-md-flex input-wrapper">
+                        <form method="get" action="#"
+                            class="header-search hs-expanded hs-round d-none d-md-flex input-wrapper">
                             <div class="select-box">
                                 <select id="category" name="category">
                                     <option value="">All Categories</option>
@@ -124,8 +130,8 @@
                                     <option value="12">Clothing</option>
                                 </select>
                             </div>
-                            <input type="text" class="form-control" name="search" id="search"
-                                placeholder="Search in..." required />
+                            <input type="text" class="form-control" name="search" id="search" placeholder="Search in..."
+                                required />
                             <button class="btn btn-search" type="submit"><i class="w-icon-search"></i>
                             </button>
                         </form>
@@ -163,27 +169,29 @@
 
                                 <div class="products">
                                     @php
-                                        $total = 0;
+                                    $total = 0;
                                     @endphp
                                     @if (!empty(session('cart')))
                                     @foreach (session('cart') as $key => $product)
                                     @php
-                                        $total += $product['quantity'] * $product['price'];
-                                        
+                                    $total += $product['quantity'] * $product['price'];
+
                                     @endphp
-                                    
+
                                     <div class="product product-cart">
                                         <div class="product-detail">
-                                            <a href="{{route('view_product',$product['identity'])}}" class="product-name">{{$product['name']}}</a>
+                                            <a href="{{route('view_product',$product['identity'])}}"
+                                                class="product-name">{{$product['name']}}</a>
                                             <div class="price-box">
                                                 <span class="product-quantity">{{$product['quantity']}}</span>
-                                                <span class="product-price">${{number_format($product['price'],2)}}</span>
+                                                <span
+                                                    class="product-price">${{number_format($product['price'],2)}}</span>
                                             </div>
                                         </div>
                                         <figure class="product-media">
                                             <a href="{{route('view_product',$product['identity'])}}">
-                                                <img src="/storage/product_display_images/{{$product['image']}}" alt="product" height="84"
-                                                    width="94" />
+                                                <img src="/storage/product_display_images/{{$product['image']}}"
+                                                    alt="product" height="84" width="94" />
                                             </a>
                                         </figure>
                                         <button class="btn btn-link btn-close" aria-label="button">
@@ -192,10 +200,10 @@
                                     </div>
                                     @endforeach
                                     @endif
-                                    
-                                    
 
-                                   
+
+
+
                                 </div>
 
                                 <div class="cart-total">
@@ -204,7 +212,8 @@
                                 </div>
 
                                 <div class="cart-action">
-                                    <a href="{{route('user.view_cart')}}" class="btn btn-dark btn-outline btn-rounded">View Cart</a>
+                                    <a href="{{route('user.view_cart')}}"
+                                        class="btn btn-dark btn-outline btn-rounded">View Cart</a>
                                     <a href="checkout.html" class="btn btn-primary  btn-rounded">Checkout</a>
                                 </div>
                             </div>
@@ -274,8 +283,8 @@
                                                 <li>
                                                     <div class="banner-fixed menu-banner menu-banner2">
                                                         <figure>
-                                                            <img src="/assets/images/menu/banner-2.jpg" alt="Menu Banner"
-                                                                width="235" height="347" />
+                                                            <img src="/assets/images/menu/banner-2.jpg"
+                                                                alt="Menu Banner" width="235" height="347" />
                                                         </figure>
                                                         <div class="banner-content">
                                                             <div class="banner-price-info mb-1 ls-normal">Get up to
@@ -357,8 +366,8 @@
                                                 <li>
                                                     <div class="menu-banner banner-fixed menu-banner3">
                                                         <figure>
-                                                            <img src="/assets/images/menu/banner-3.jpg" alt="Menu Banner"
-                                                                width="235" height="461" />
+                                                            <img src="/assets/images/menu/banner-3.jpg"
+                                                                alt="Menu Banner" width="235" height="461" />
                                                         </figure>
                                                         <div class="banner-content">
                                                             <h4
@@ -443,8 +452,8 @@
                                                 <li>
                                                     <div class="menu-banner banner-fixed menu-banner4">
                                                         <figure>
-                                                            <img src="/assets/images/menu/banner-4.jpg" alt="Menu Banner"
-                                                                width="235" height="433" />
+                                                            <img src="/assets/images/menu/banner-4.jpg"
+                                                                alt="Menu Banner" width="235" height="433" />
                                                         </figure>
                                                         <div class="banner-content">
                                                             <h4 class="banner-subtitle font-weight-normal">Deals Of The
@@ -800,7 +809,7 @@
         <!-- End of Header -->
 
         <!-- Start of Main -->
-            @yield('content')
+        @yield('content')
         <!-- End of Main -->
 
         <!-- Start of Footer -->
@@ -814,17 +823,20 @@
                                     <i class="w-icon-envelop3"></i>
                                 </div>
                                 <div class="icon-box-content">
-                                    <h4 class="icon-box-title text-white text-uppercase mb-0">Subscribe To  Our Newsletter</h4>
-                                    <p class="text-white">Get all the latest information on Events, Sales and Offers.</p>
+                                    <h4 class="icon-box-title text-white text-uppercase mb-0">Subscribe To Our
+                                        Newsletter</h4>
+                                    <p class="text-white">Get all the latest information on Events, Sales and Offers.
+                                    </p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-7 col-lg-6 col-md-9 mt-4 mt-lg-0 ">
-                            <form action="#" method="get" class="input-wrapper input-wrapper-inline input-wrapper-rounded">
+                            <form action="#" method="get"
+                                class="input-wrapper input-wrapper-inline input-wrapper-rounded">
                                 <input type="email" class="form-control mr-2 bg-white" name="email" id="email"
                                     placeholder="Your E-mail Address" />
-                            <button class="btn btn-dark btn-rounded" type="submit">Subscribe<i
-                                    class="w-icon-long-arrow-right"></i></button>
+                                <button class="btn btn-dark btn-rounded" type="submit">Subscribe<i
+                                        class="w-icon-long-arrow-right"></i></button>
                             </form>
                         </div>
                     </div>
@@ -1024,8 +1036,7 @@
                         </div>
                         <figure class="product-media">
                             <a href="#">
-                                <img src="/assets/images/cart/product-1.jpg" alt="product" height="84"
-                                    width="94" />
+                                <img src="/assets/images/cart/product-1.jpg" alt="product" height="84" width="94" />
                             </a>
                         </figure>
                         <button class="btn btn-link btn-close" aria-label="button">
@@ -1046,8 +1057,7 @@
                         </div>
                         <figure class="product-media">
                             <a href="#">
-                                <img src="/assets/images/cart/product-2.jpg" alt="product" width="84"
-                                    height="94" />
+                                <img src="/assets/images/cart/product-2.jpg" alt="product" width="84" height="94" />
                             </a>
                         </figure>
                         <button class="btn btn-link btn-close" aria-label="button">
@@ -1075,8 +1085,8 @@
                 <p>Search</p>
             </a>
             <form action="#" class="input-wrapper">
-                <input type="text" class="form-control" name="search" autocomplete="off"
-                    placeholder="Search" required />
+                <input type="text" class="form-control" name="search" autocomplete="off" placeholder="Search"
+                    required />
                 <button class="btn btn-search" type="submit">
                     <i class="w-icon-search"></i>
                 </button>
@@ -1086,7 +1096,11 @@
     <!-- End of Sticky Footer -->
 
     <!-- Start of Scroll Top -->
-    <a id="scroll-top" class="scroll-top" href="#top" title="Top" role="button"> <i class="w-icon-angle-up"></i> <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 70"> <circle id="progress-indicator" fill="transparent" stroke="#000000" stroke-miterlimit="10" cx="35" cy="35" r="34" style="stroke-dasharray: 16.4198, 400;"></circle> </svg> </a>
+    <a id="scroll-top" class="scroll-top" href="#top" title="Top" role="button"> <i class="w-icon-angle-up"></i> <svg
+            version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 70">
+            <circle id="progress-indicator" fill="transparent" stroke="#000000" stroke-miterlimit="10" cx="35" cy="35"
+                r="34" style="stroke-dasharray: 16.4198, 400;"></circle>
+        </svg> </a>
     <!-- End of Scroll Top -->
 
     <!-- Start of Mobile Menu -->
@@ -1099,8 +1113,8 @@
 
         <div class="mobile-menu-container scrollable">
             <form action="#" method="get" class="input-wrapper">
-                <input type="text" class="form-control" name="search" autocomplete="off"
-                    placeholder="Search" required />
+                <input type="text" class="form-control" name="search" autocomplete="off" placeholder="Search"
+                    required />
                 <button class="btn btn-search" type="submit">
                     <i class="w-icon-search"></i>
                 </button>
@@ -1129,8 +1143,10 @@
                                         <li><a href="shop-banner-sidebar.html">Banner With Sidebar</a></li>
                                         <li><a href="shop-boxed-banner.html">Boxed Banner</a></li>
                                         <li><a href="shop-fullwidth-banner.html">Full Width Banner</a></li>
-                                        <li><a href="shop-horizontal-filter.html">Horizontal Filter<span class="tip tip-hot">Hot</span></a></li>
-                                        <li><a href="shop-off-canvas.html">Off Canvas Sidebar<span class="tip tip-new">New</span></a></li>
+                                        <li><a href="shop-horizontal-filter.html">Horizontal Filter<span
+                                                    class="tip tip-hot">Hot</span></a></li>
+                                        <li><a href="shop-off-canvas.html">Off Canvas Sidebar<span
+                                                    class="tip tip-new">New</span></a></li>
                                         <li><a href="shop-infinite-scroll.html">Infinite Ajax Scroll</a></li>
                                         <li><a href="shop-right-sidebar.html">Right Sidebar</a></li>
                                         <li><a href="shop-both-sidebar.html">Both Sidebar</a></li>
@@ -1160,13 +1176,15 @@
                                         <li><a href="product-extended.html">Extended Info</a>
                                         </li>
                                         <li><a href="product-without-sidebar.html">Without Sidebar</a></li>
-                                        <li><a href="product-video.html">360<sup>o</sup> &amp; Video<span class="tip tip-new">New</span></a></li>
+                                        <li><a href="product-video.html">360<sup>o</sup> &amp; Video<span
+                                                    class="tip tip-new">New</span></a></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <a href="#">Product Layouts</a>
                                     <ul>
-                                        <li><a href="product-default.html">Default<span class="tip tip-hot">Hot</span></a></li>
+                                        <li><a href="product-default.html">Default<span
+                                                    class="tip tip-hot">Hot</span></a></li>
                                         <li><a href="product-vertical.html">Vertical Thumbs</a></li>
                                         <li><a href="product-grid.html">Grid Images</a></li>
                                         <li><a href="product-masonry.html">Masonry</a></li>
@@ -1538,7 +1556,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="shop-banner-sidebar.html" class="font-weight-bold text-primary text-uppercase ls-25">
+                            <a href="shop-banner-sidebar.html"
+                                class="font-weight-bold text-primary text-uppercase ls-25">
                                 View All Categories<i class="w-icon-angle-right"></i>
                             </a>
                         </li>
@@ -1552,7 +1571,7 @@
     @yield('details-footer-content')
 
     <!-- Plugin JS File -->
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.28/dist/sweetalert2.all.min.js"></script>
     <script src="/assets/vendor/jquery/jquery.min.js"></script>
     <script src="/assets/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
     <script src="/assets/js/main.min.js"></script>
@@ -1568,7 +1587,20 @@
     <!-- Swiper JS -->
     @yield('scripts')
 
+    @if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'success',
+            text: '{{session("success")}}',
+        })
+
+    </script>
+
+    @endif
+
 </body>
 
 <!-- Mirrored from portotheme.com/html/wolmart/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Sep 2022 10:44:19 GMT -->
+
 </html>

@@ -30,22 +30,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if(!empty(session('cart')))
                             @php
-                                dd(session('cart'));
-                            @endphp
+                                $total = 0;
+                             @endphp
+                            @if(!empty(session('cart')))
+
+
                                 @foreach (session('cart') as $key => $product)
+                                @php
+                                    $total += $product['quantity']* $product['price'];
+                                @endphp
                                 <tr data-id="{{$key}}">
                                     <td>{{$loop->iteration}}</td>
                                     <td class="product-thumbnail">
                                         <div class="p-relative">
-                                            <a href="product-default.html">
+                                            <a href="{{route('view_product', $product['identity'])}}">
                                                 <figure>
                                                     <img src="/storage/product_display_images/{{$product['image']}}" alt="product"
                                                         width="300" height="338">
                                                 </figure>
                                             </a>
-                                            <button type="submit" class="btn btn-close"><i
+                                            <button type="submit" class="btn btn-close cart_remove"><i
                                                     class="fas fa-times"></i></button>
                                         </div>
                                     </td>
@@ -58,7 +63,7 @@
                                     <td class="product-quantity">
                                         <div class="input-grou">
                                             <input class="form-control cart_update quant" value="{{$product['quantity']}}" type="number" min="1" max="100000">
-                                           
+
                                         </div>
                                     </td>
                                     <td class="product-subtotal">
@@ -67,18 +72,18 @@
                                 </tr>
                                 @endforeach
                             @endif
-                           
-                           
+
+
                         </tbody>
                     </table>
 
                     <div class="cart-action mb-6">
                         <a href="{{route('welcome')}}" class="btn btn-dark btn-rounded btn-icon-left btn-shopping mr-auto"><i class="w-icon-long-arrow-left"></i>Continue Shopping</a>
-                        <button type="submit" class="btn btn-rounded btn-default btn-clear" name="clear_cart" value="Clear Cart">Clear Cart</button> 
+                        <button type="submit" class="btn btn-rounded btn-default btn-clear" name="clear_cart" value="Clear Cart">Clear Cart</button>
                         <button type="submit" class="btn btn-rounded btn-update disabled" name="update_cart" value="Update Cart">Update Cart</button>
                     </div>
 
-                    
+
                 </div>
                 <div class="col-lg-4 sticky-sidebar-wrapper">
                     <div class="sticky-sidebar">
@@ -87,9 +92,9 @@
                             <hr class="divider mb-6">
                             <div class="order-total d-flex justify-content-between align-items-center">
                                 <label>Total</label>
-                                <span class="ls-50">$100.00</span>
+                                <span class="ls-50">${{number_format($total,2)}}</span>
                             </div>
-                            <a href="#"
+                            <a href="{{route('user.checkout')}}"
                                 class="btn btn-block btn-dark btn-icon-right btn-rounded  btn-checkout">
                                 Proceed to checkout<i class="w-icon-long-arrow-right"></i></a>
                         </div>
@@ -145,6 +150,7 @@
             })
         }
     })
+
 
 </script>
 @endsection

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -43,6 +44,12 @@ Route::prefix('user')->middleware(['auth'])->group(function () {
  Route::get('/add-to-cart/{id}',[CartController::class, 'addToCart'])->name('user.add_to_cart');
  Route::get('/view-cart', [CartController::class, 'viewCartItems'])->name('user.view_cart');
  Route::patch('/update-cart', [CartController::class, 'update'])->name('user.update_cart');
+ Route::delete('/delete-from-cart', [CartController::class, 'deleteFromCart'])->name('user.remove_product_from_cart');
+ Route::get('proceed-to-checkout', [CartController::class, 'checkout'])->name('user.checkout');
+ Route::post('submit-order', [CartController::class, 'submitOrder'])->name('user.submit_order');
+ Route::post('/pay', [OrderController::class, 'redirectToGateway'])->name('pay');
+ Route::get('/payment/callback', [OrderController::class,   'handleGatewayCallback']);
+
 });
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {

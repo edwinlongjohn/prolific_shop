@@ -13,8 +13,8 @@ class CartController extends Controller
         //dd('i got here');
         $product = Product::find($id);
         $cart = session()->get('cart', []);
-       
         
+
         if (isset($cart[$id])) {
             $cart[$id]['quantity']++;
         } else {
@@ -39,13 +39,29 @@ class CartController extends Controller
     public function update(Request $request)
     {
        $id = $request->id;
-       $quantity = request->quantity;
-       $cart = session()->get('cart', []);
+       $quantity = $request->quantity;
+       $cart = session()->get('cart');
 
        if(isset($cart[$id])){
             $cart[$id]['quantity'] = $quantity;
             session()->put('cart', $cart);
        }
-       session()->flash('cart updated successfully');
+       session()->flash('success','cart updated successfully');
+    }
+
+    public function deleteFromCart(Request $request)
+    {
+        $id = $request->id;
+        $cart = session()->get('cart');
+        if(isset($cart[$id])){
+            unset($cart[$id]);
+            session()->put('cart', $cart);
+       }
+       session()->flash('success','cart updated successfully');
+    }
+
+    public function checkout()
+    {
+        return view('user.checkout');
     }
 }
